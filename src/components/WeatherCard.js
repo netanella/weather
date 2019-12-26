@@ -2,14 +2,16 @@ import React from "react";
 import LineChart from './Chart'
 import {Card, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import SimpleSelect from "./SimpleSelect";
+import CitySelect from "./CitySelect";
 import Grid from "@material-ui/core/Grid";
 import { styled } from '@material-ui/core/styles';
+import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
 
 const useStyles = makeStyles({
     title: {
         fontSize: 32,
     },
+
     subtitle: {
         fontSize: 22,
         marginBottom: 12
@@ -26,24 +28,24 @@ const WeatherCard = (props) => {
     return (
         <StyledCard>
             <Grid container>
-                <Grid item xs={3}>
+                <Grid item>
                     <Typography className={classes.title}>
                         {props.city}, {props.country}
                     </Typography>
                     <Typography className={classes.subtitle} color="textSecondary">
-                        {props.timeNow} <br/>
+                        {dayFromUnix(props.timeNow)}, {hourFromUnix(props.timeNow)} <br/>
                         {props.descriptionNow}
                     </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={8}>
                     <Degrees>
                         {Math.round(props.tempNow)}<sup>&#8451;</sup>
                     </Degrees>
                 </Grid>
-                <Grid item xs={7}>
-                    <SimpleSelect
+                <Grid item>
+                    <CitySelect
                         onChange={props.onChange}
-                        defaultValue={props.defaultValue}
+                        value={props.city}
                         options={props.options}
                     />
                 </Grid>
@@ -65,7 +67,9 @@ const StyledCard = styled(Card)({
 });
 
 const Degrees = styled(Typography)({
-    fontSize: 80
+    fontSize: 80,
+    flexGrow: 5,
+    marginLeft: 30
 });
 
 

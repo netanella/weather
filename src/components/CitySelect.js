@@ -9,14 +9,14 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 120,
+        width: '100%',
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
 }));
 
-const SimpleSelect = (props) => {
+const CitySelect = (props) => {
     const classes = useStyles();
 
     const inputLabel = useRef(null);
@@ -31,7 +31,7 @@ const SimpleSelect = (props) => {
                 City
             </InputLabel>
             <Select
-                value={props.defaultValue}
+                value={props.value}
                 onChange={props.onChange}
                 labelWidth={labelWidth}
             >
@@ -41,4 +41,4 @@ const SimpleSelect = (props) => {
     )
 };
 
-export default SimpleSelect;
+export default CitySelect;

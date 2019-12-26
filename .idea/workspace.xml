@@ -3,10 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ad852be9-638d-443e-a096-c659c69042d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Titles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Title.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SimpleSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CitySelect.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/WeatherCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WeatherCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/getWeather.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/getWeather.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/timeUnixConverter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/timeUnixConverter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +68,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1577037359061</updated>
-      <workItem from="1577037367641" duration="113818000" />
+      <workItem from="1577037367641" duration="126630000" />
     </task>
+    <task id="LOCAL‎00001" summary="title with appbar component">
+      <created>1577378247315</created>
+      <option name="number" value="LOCAL‎00001" />
+      <option name="presentableId" value="LOCAL‎00001" />
+      <updated>1577378247315</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +99,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="title with appbar component" />
+    <option name="LAST_COMMIT_MESSAGE" value="title with appbar component" />
   </component>
 </project>

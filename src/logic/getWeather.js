@@ -1,5 +1,4 @@
 import {API_KEY} from "./common";
-import timeConverter from "./timeUnixConverter";
 
 const getWeather = async (cityName) => {
     try {
@@ -10,10 +9,10 @@ const getWeather = async (cityName) => {
         console.log(weatherData);
         return {
             country: weatherData.sys.country,
-            timeNow: timeConverter(weatherData.dt),
+            timeNow: weatherData.dt,
             tempNow: weatherData.main.temp,
             descriptionNow: weatherData.weather[0].description,
-            forecastData: forecastData.list.map((o) => ({dt: timeConverter(o.dt), temp: o.main.temp})),
+            forecastData: forecastData.list.map((o) => ({dt: o.dt, temp: o.main.temp})),
         };
     }
     catch(err){

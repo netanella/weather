@@ -1,13 +1,6 @@
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const moment = require('moment');
 
-export default function timeConverter(UNIX_timestamp){
-    const d = new Date(UNIX_timestamp * 1000); //milliseconds
-    const day = days[d.getDay()];
-    let hour = d.getHours();
-    let ampm = 'am';
-    if (hour>12) {
-        hour = hour-12;
-        ampm = 'pm';
-    }
-    return day + ', ' + hour + ampm ;
-}
+export const dayFromUnix = unixTime => { return moment.unix(unixTime).format("dddd"); };
+export const dayShortFromUnix = unixTime => { return moment.unix(unixTime).format("ddd"); };
+export const dateFromUnix = unixTime => { return moment.unix(unixTime).format('MMMM Do'); };
+export const hourFromUnix = unixTime => { return moment.unix(unixTime).format('h A'); };

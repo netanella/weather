@@ -5,14 +5,14 @@ import Container from "@material-ui/core/Container";
 //components
 import Title from "./components/Title";
 import WeatherCard from "./components/WeatherCard";
-import SimpleSelect from "./components/SimpleSelect";
+import CitySelect from "./components/CitySelect";
 
 //logic
 import getWeather from "./logic/getWeather";
 import {Card, makeStyles} from "@material-ui/core";
 import { styled } from '@material-ui/core/styles';
 
-const defaultCity = 'London';
+const defaultCity = 'Jerusalem';
 
 const App = () => {
 
@@ -53,20 +53,19 @@ const App = () => {
                 <Title/>
             </Grid>
             <Grid item xs={12} sm={10}>
-                    <WeatherCard
-                        city={state.cityName}
-                        country={state.country}
-                        timeNow={state.timeNow}
-                        tempNow={state.tempNow}
-                        descriptionNow={state.descriptionNow}
-                        forecastData={state.forecastData}
-                        defaultValue={defaultCity}
-                        options={cities}
-                        errMess={state.errMess}
-                        onChange={(e) => {
-                            setState({cityName: e.target.value})
-                        }}
-                    />
+                <WeatherCard
+                    city={state.cityName}
+                    country={state.country}
+                    timeNow={state.timeNow}
+                    tempNow={state.tempNow}
+                    descriptionNow={state.descriptionNow}
+                    forecastData={state.forecastData}
+                    options={cities}
+                    errMess={state.errMess}
+                    onChange={(e) => {
+                        setState({cityName: e.target.value})
+                    }}
+                />
 
             </Grid>
         </Grid>
