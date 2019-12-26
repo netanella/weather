@@ -1,11 +1,9 @@
 import React from "react";
 import LineChart from './Chart'
-import {Card, CardHeader, makeStyles} from "@material-ui/core";
-import CardContent from "@material-ui/core/CardContent";
+import {Card, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import SimpleSelect from "./SimpleSelect";
 import Grid from "@material-ui/core/Grid";
-import Titles from "./Titles";
 import { styled } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -21,10 +19,14 @@ const useStyles = makeStyles({
 const WeatherCard = (props) => {
     const classes = useStyles();
 
+    if(props.errMess){
+        return <StyledCard> {props.errMess} </StyledCard>;
+    }
+
     return (
-        <StyledCard xs={12} sm={10}>
+        <StyledCard>
             <Grid container>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                     <Typography className={classes.title}>
                         {props.city}, {props.country}
                     </Typography>
@@ -33,12 +35,12 @@ const WeatherCard = (props) => {
                         {props.descriptionNow}
                     </Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                     <Degrees>
                         {Math.round(props.tempNow)}<sup>&#8451;</sup>
                     </Degrees>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={7}>
                     <SimpleSelect
                         onChange={props.onChange}
                         defaultValue={props.defaultValue}
@@ -53,6 +55,7 @@ const WeatherCard = (props) => {
             </Grid>
         </StyledCard>
     );
+
 };
 
 export default WeatherCard;

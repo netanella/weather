@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
 //components
-import Title from "./components/Titles";
+import Title from "./components/Title";
 import WeatherCard from "./components/WeatherCard";
 import SimpleSelect from "./components/SimpleSelect";
 
@@ -12,7 +12,7 @@ import getWeather from "./logic/getWeather";
 import {Card, makeStyles} from "@material-ui/core";
 import { styled } from '@material-ui/core/styles';
 
-const defaultCity = 'Haifa';
+const defaultCity = 'London';
 
 const App = () => {
 
@@ -48,14 +48,11 @@ const App = () => {
     }, [state.cityName]);
 
     return (
-        <Grid container spacing={4}>
-            <Jumbotron item xs={12}>
-                <Title
-                    errMess={state.errMess}
-                />
-            </Jumbotron>
-            <Container>
-                <Grid item xs={12} sm={10}>
+        <Grid container spacing={5} direction="row" justify="center">
+            <Grid item xs={12}>
+                <Title/>
+            </Grid>
+            <Grid item xs={12} sm={10}>
                     <WeatherCard
                         city={state.cityName}
                         country={state.country}
@@ -65,23 +62,17 @@ const App = () => {
                         forecastData={state.forecastData}
                         defaultValue={defaultCity}
                         options={cities}
+                        errMess={state.errMess}
                         onChange={(e) => {
                             setState({cityName: e.target.value})
                         }}
                     />
-                </Grid>
-            </Container>
+
+            </Grid>
         </Grid>
     );
 };
 
 export default App;
-
-const Jumbotron = styled(Grid)({
-    background: '#fff',
-    padding: 30,
-    marginBottom: 20
-});
-
 
 
