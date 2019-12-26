@@ -28,7 +28,7 @@ const WeatherCard = (props) => {
     return (
         <StyledCard>
             <Grid container>
-                <Grid item>
+                <Grid item xs={3}>
                     <Typography className={classes.title}>
                         {props.city}, {props.country}
                     </Typography>
@@ -37,16 +37,17 @@ const WeatherCard = (props) => {
                         {props.descriptionNow}
                     </Typography>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={7}>
                     <Degrees>
                         {Math.round(props.tempNow)}<sup>&#8451;</sup>
                     </Degrees>
                 </Grid>
-                <Grid item>
+                <Grid item xs={2}>
                     <CitySelect
                         onChange={props.onChange}
                         value={props.city}
                         options={props.options}
+                        width='100%'
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -69,7 +70,6 @@ const StyledCard = styled(Card)({
 const Degrees = styled(Typography)({
     fontSize: 80,
     flexGrow: 5,
-    marginLeft: 30
 });
 
 

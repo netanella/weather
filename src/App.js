@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import {cities} from "./logic/cities";
 
 //components
 import Title from "./components/Title";
@@ -24,14 +25,6 @@ const App = () => {
         forecastData: '',
         errMess: ''
     });
-
-    const cities = [
-        { value: 'London'},
-        { value: 'Jerusalem'},
-        { value: 'New York'},
-        { value: 'New Delhi'},
-        { value: 'Haifa'}
-    ];
 
     useEffect(() => {
         getWeather(state.cityName).then((data) => {

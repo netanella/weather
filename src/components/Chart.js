@@ -3,24 +3,33 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Text
 } from 'recharts';
 import {Typography} from "@material-ui/core";
-import { styled } from '@material-ui/core/styles';
 import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
 
 const CustomXAxisTick = props => {
-    return <Text {...props}>{props.labelFormatter(props.payload.value)}</Text>;
+    return (<Text {...props}>{dayFromUnix(props.payload.value)}</Text>
+    );
 };
 
-function CustomTooltip({ payload, label, active }) {
-    if (active && payload) {
+const CustomTooltip = props => {
+
+    if (props.active && props.payload) {
+        let temp = props.payload[0].value;
+        let emoji = '';
+
+        if (temp < 15) emoji = <span role="img" aria-label="Freezing">🥶</span>;
+        else if (temp < 30) emoji = <span role="img" aria-label="Nice">😀</span>;
+        else if (temp >= 30) emoji = <span role="img" aria-label="Hot">🥵</span>;
+
         return (
-            <StyledTooltip>
-                <Typography className="intro"><strong>{payload[0].value}<sup>o</sup></strong></Typography>
-                <Typography className="label">{dayShortFromUnix(label)}, {dateFromUnix(label)}, {hourFromUnix(label)} </Typography>
-            </StyledTooltip>
+            <div {...props}>
+                <Typography variant="h6" className="intro"><strong>{temp}<sup>o</sup></strong></Typography>
+                <Typography className="label">{dayShortFromUnix(props.label)}, {dateFromUnix(props.label)}, {hourFromUnix(props.label)} </Typography>
+                <h1>{emoji}</h1>
+            </div>
         );
     }
     return null;
-}
+};
 
 const RenderLineChart = (props) => {
 
@@ -40,16 +49,20 @@ const RenderLineChart = (props) => {
                             <CustomXAxisTick
                                 style={{
                                     fontFamily: "Arial",
-                                    fontWeight: 500,
+                                    fontWeight: 500
                                 }}
-                                labelFormatter={dayFromUnix}
                             />
                         }
                     />
-
                     <YAxis />
                     <Tooltip
-                        content={<CustomTooltip />}
+                        content={
+                            <CustomTooltip
+                                style={{
+                                    background: 'rgba(255,255,255,0.5)',
+                                    padding: '10px',
+                                }}
+                            />}
                     />
                     <Area type="monotone" dataKey="temp" stroke="#8884d8" fill="#8884d8"/>
                 </AreaChart>
@@ -59,8 +72,3 @@ const RenderLineChart = (props) => {
 };
 
 export default RenderLineChart;
-
-const StyledTooltip = styled('div')({
-   background: 'rgba(255,255,255,0.5)',
-    padding: '10px'
-});
