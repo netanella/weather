@@ -5,12 +5,9 @@ import {cities} from "./logic/cities";
 //components
 import Title from "./components/Title";
 import WeatherCard from "./components/WeatherCard";
-import CitySelect from "./components/CitySelect";
 
 //logic
 import getWeather from "./logic/getWeather";
-import {Card, makeStyles} from "@material-ui/core";
-import { styled } from '@material-ui/core/styles';
 
 const defaultCity = 'Jerusalem';
 
@@ -33,6 +30,7 @@ const App = () => {
                 tempNow: data.tempNow,
                 timeNow: data.timeNow,
                 descriptionNow: data.descriptionNow,
+                icon: data.icon,
                 forecastData: data.forecastData,
                 errMess: data.errMess
             })
@@ -51,6 +49,7 @@ const App = () => {
                     timeNow={state.timeNow}
                     tempNow={state.tempNow}
                     descriptionNow={state.descriptionNow}
+                    icon={state.icon}
                     forecastData={state.forecastData}
                     options={cities}
                     errMess={state.errMess}
@@ -64,5 +63,7 @@ const App = () => {
 };
 
 export default App;
+
+
 
 

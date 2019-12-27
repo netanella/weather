@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Text
-} from 'recharts';
+import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Text} from 'recharts';
 import {Typography} from "@material-ui/core";
 import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix, ampmFromUnix} from '../logic/timeUnixConverter';
 
@@ -13,7 +11,7 @@ const CustomXAxisTick = props => {
 const CustomTooltip = props => {
 
     if (props.active && props.payload) {
-        let temp = props.payload[0].value;
+        const temp = props.payload[0].value;
         let emoji = '';
 
         if (temp < 15) emoji = <span role="img" aria-label="Freezing">🥶</span>;
@@ -39,7 +37,12 @@ const RenderChart = (props) => {
                 <AreaChart
                     data={props.forecastData}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <defs>
+                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                        </linearGradient>
+                    </defs>
                     <XAxis
                         dataKey="dt"
                         tick={
@@ -52,6 +55,7 @@ const RenderChart = (props) => {
                         }
                     />
                     <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <Tooltip
                         content={
                             <CustomTooltip
@@ -61,7 +65,7 @@ const RenderChart = (props) => {
                                 }}
                             />}
                     />
-                    <Area type="monotone" dataKey="temp" stroke="#8884d8" fill="#8884d8"/>
+                    <Area type="monotone" dataKey="temp" stroke="black" fillOpacity={1} fill="url(#colorUv)"/>
                 </AreaChart>
             </ResponsiveContainer>
         </div>

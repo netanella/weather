@@ -11,7 +11,8 @@ const getWeather = async (cityName) => {
             country: weatherData.sys.country,
             timeNow: weatherData.dt,
             tempNow: weatherData.main.temp,
-            descriptionNow: weatherData.weather[0].description,
+            descriptionNow: weatherData.weather[0].main,
+            icon: weatherData.weather[0].icon,
             forecastData: forecastData.list.map((o) => ({dt: o.dt, temp: o.main.temp})),
         };
     }

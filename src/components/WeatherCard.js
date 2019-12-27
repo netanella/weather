@@ -1,14 +1,14 @@
 import React from "react";
 import ForecastChart from './Chart'
-import {Card, makeStyles, Grow} from "@material-ui/core";
+import {Card, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CitySelect from "./CitySelect";
 import Grid from "@material-ui/core/Grid";
-import { styled } from '@material-ui/core/styles';
-import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
-import WeatherIcon from './WeatherIcon';
-import CircularProgress from "@material-ui/core/CircularProgress";
+import {styled} from '@material-ui/core/styles';
+import {dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
 import LinearProgress from "@material-ui/core/LinearProgress";
+import WbSunnyTwoToneIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles({
     title: {
@@ -21,35 +21,35 @@ const useStyles = makeStyles({
     },
 });
 
-const WeatherData = props => {
+const DisplayWeather = props => {
     const classes = useStyles();
 
-    if(props.tempNow){
+    if(props.tempNow && props.country && props.descriptionNow){ //loading complete
         return (
-            <Grid container>
-                <Grid item xs={3}>
-                    <Typography className={classes.title}>
-                        {props.city}, {props.country}
-                    </Typography>
-                    <Typography className={classes.subtitle} color="textSecondary">
-                        {dayFromUnix(props.timeNow)}, {hourFromUnix(props.timeNow)} <br/>
-                        <strong>{props.descriptionNow}</strong>
-                    </Typography>
-                </Grid>
-                <Grid item xs={7}>
-                    <Degrees>
-                        {Math.round(props.tempNow)}<sup>&#8451;</sup>
-                    </Degrees>
-                    <WeatherIcon
-                        description={props.descriptionNow}
-                    />
+            <>
+                <Grid container item xs={12} sm={6} >
+
+                    <Grid item xs={6} sm>
+                        <Typography className={classes.title}>
+                            {props.city}<Hidden smDown> , {props.country}</Hidden>
+                        </Typography>
+                        <Typography className={classes.subtitle} color="textSecondary">
+                            {dayFromUnix(props.timeNow)}, {hourFromUnix(props.timeNow)} <br/>
+                            <strong>{props.descriptionNow}</strong>
+                        </Typography>
+                    </Grid>
+
+                    <Grid item><Degrees>{Math.round(props.tempNow)}<sup>&#8451;</sup></Degrees></Grid>
+                    <Hidden smDown>
+                        <Grid item><img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="icon" width="150px"/></Grid>
+                    </Hidden>
                 </Grid>
                 <Grid item xs={12}>
                     <ForecastChart
                         forecastData={props.forecastData}
                     />
                 </Grid>
-            </Grid>
+            </>
         )
     }
     return (<LinearProgress color="primary" size={24} style={{margin: '10rem'}}/>);
@@ -61,22 +61,21 @@ const WeatherCard = props => {
     }
 
     return (
-        <Grow in={true}>
-            <StyledCard>
-                <CitySelect
-                    onChange={props.onChange}
-                    value={props.city}
-                    options={props.options}
-                    style={{
-                        width: 180,
-                        position: 'absolute',
-                        right: '4rem'
-                    }}
-                />
-                <WeatherData {...props}/>
-            </StyledCard>
-        </Grow>
-
+        <StyledCard>
+            <Grid container direction="row-reverse" justify="space-between">
+                <Grid item xs={12} sm={2}>
+                    <CitySelect
+                        onChange={props.onChange}
+                        value={props.city}
+                        options={props.options}
+                        style={{
+                            width: '100%'
+                        }}
+                    />
+                </Grid>
+                <DisplayWeather {...props}/>
+            </Grid>
+        </StyledCard>
     );
 
 };
@@ -84,13 +83,12 @@ const WeatherCard = props => {
 export default WeatherCard;
 
 const StyledCard = styled(Card)({
-    padding: '4rem',
+    padding: '5%',
     position: 'relative'
 });
 
 const Degrees = styled(Typography)({
     fontSize: 80,
-    flexGrow: 5,
 });
 
 
