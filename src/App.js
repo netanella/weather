@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import {cities} from "./logic/cities";
 
 //components
@@ -59,7 +58,6 @@ const App = () => {
                         setState({cityName: e.target.value})
                     }}
                 />
-
             </Grid>
         </Grid>
     );

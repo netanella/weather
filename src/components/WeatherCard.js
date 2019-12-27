@@ -1,11 +1,14 @@
 import React from "react";
-import LineChart from './Chart'
-import {Card, makeStyles} from "@material-ui/core";
+import ForecastChart from './Chart'
+import {Card, makeStyles, Grow} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CitySelect from "./CitySelect";
 import Grid from "@material-ui/core/Grid";
 import { styled } from '@material-ui/core/styles';
 import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
+import WeatherIcon from './WeatherIcon';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles({
     title: {
@@ -18,15 +21,11 @@ const useStyles = makeStyles({
     },
 });
 
-const WeatherCard = (props) => {
+const WeatherData = props => {
     const classes = useStyles();
 
-    if(props.errMess){
-        return <StyledCard> {props.errMess} </StyledCard>;
-    }
-
-    return (
-        <StyledCard>
+    if(props.tempNow){
+        return (
             <Grid container>
                 <Grid item xs={3}>
                     <Typography className={classes.title}>
@@ -34,29 +33,50 @@ const WeatherCard = (props) => {
                     </Typography>
                     <Typography className={classes.subtitle} color="textSecondary">
                         {dayFromUnix(props.timeNow)}, {hourFromUnix(props.timeNow)} <br/>
-                        {props.descriptionNow}
+                        <strong>{props.descriptionNow}</strong>
                     </Typography>
                 </Grid>
                 <Grid item xs={7}>
                     <Degrees>
                         {Math.round(props.tempNow)}<sup>&#8451;</sup>
                     </Degrees>
-                </Grid>
-                <Grid item xs={2}>
-                    <CitySelect
-                        onChange={props.onChange}
-                        value={props.city}
-                        options={props.options}
-                        width='100%'
+                    <WeatherIcon
+                        description={props.descriptionNow}
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <LineChart
+                    <ForecastChart
                         forecastData={props.forecastData}
                     />
                 </Grid>
             </Grid>
-        </StyledCard>
+        )
+    }
+    return (<LinearProgress color="primary" size={24} style={{margin: '10rem'}}/>);
+};
+
+const WeatherCard = props => {
+    if(props.errMess){
+        return <StyledCard> {props.errMess} </StyledCard>;
+    }
+
+    return (
+        <Grow in={true}>
+            <StyledCard>
+                <CitySelect
+                    onChange={props.onChange}
+                    value={props.city}
+                    options={props.options}
+                    style={{
+                        width: 180,
+                        position: 'absolute',
+                        right: '4rem'
+                    }}
+                />
+                <WeatherData {...props}/>
+            </StyledCard>
+        </Grow>
+
     );
 
 };
@@ -64,7 +84,8 @@ const WeatherCard = (props) => {
 export default WeatherCard;
 
 const StyledCard = styled(Card)({
-    padding: '4rem'
+    padding: '4rem',
+    position: 'relative'
 });
 
 const Degrees = styled(Typography)({

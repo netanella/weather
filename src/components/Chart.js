@@ -3,10 +3,10 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Text
 } from 'recharts';
 import {Typography} from "@material-ui/core";
-import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
+import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix, ampmFromUnix} from '../logic/timeUnixConverter';
 
 const CustomXAxisTick = props => {
-    return (<Text {...props}>{dayFromUnix(props.payload.value)}</Text>
+    return (<Text {...props}>{dayFromUnix(props.payload.value)+' '+ampmFromUnix(props.payload.value)}</Text>
     );
 };
 
@@ -31,16 +31,13 @@ const CustomTooltip = props => {
     return null;
 };
 
-const RenderLineChart = (props) => {
+const RenderChart = (props) => {
 
     return (
         <div style={{ width: '100%', height: 400 }}>
             <ResponsiveContainer>
                 <AreaChart
                     data={props.forecastData}
-                    margin={{
-                        top: 10, right: 30, left: 0, bottom: 0,
-                    }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
@@ -71,4 +68,4 @@ const RenderLineChart = (props) => {
     );
 };
 
-export default RenderLineChart;
+export default RenderChart;

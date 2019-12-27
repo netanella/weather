@@ -3,5 +3,6 @@ export const cities = [
     { value: 'Jerusalem'},
     { value: 'New York'},
     { value: 'New Delhi'},
-    { value: 'Haifa'}
+    { value: 'Haifa'},
+    { value: 'Mexico City'}
 ];

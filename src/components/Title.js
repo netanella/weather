@@ -25,7 +25,7 @@ const Title = (props) => {
             <AppBar position="block" alignItems="center">
                 <Toolbar>
                     <Typography className={classes.title} variant="h3" ><WbSunnyTwoToneIcon fontSize="large"/> Weather <WbSunnyTwoToneIcon fontSize="large"/></Typography>
-                    <Typography>by Netanella</Typography>
+                    <Typography>with &hearts; by Netanella</Typography>
                 </Toolbar>
             </AppBar>
     );

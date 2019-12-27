@@ -4,3 +4,4 @@ export const dayFromUnix = unixTime => { return moment.unix(unixTime).format("dd
 export const dayShortFromUnix = unixTime => { return moment.unix(unixTime).format("ddd"); };
 export const dateFromUnix = unixTime => { return moment.unix(unixTime).format('MMMM Do'); };
 export const hourFromUnix = unixTime => { return moment.unix(unixTime).format('h A'); };
+export const ampmFromUnix = unixTime => { return moment.unix(unixTime).format('A'); };
