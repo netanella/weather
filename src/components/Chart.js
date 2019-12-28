@@ -1,11 +1,13 @@
 import React from 'react';
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Text} from 'recharts';
+import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
 import {Typography} from "@material-ui/core";
 import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix, ampmFromUnix} from '../logic/timeUnixConverter';
 
-const CustomXAxisTick = props => {
-    return (<Text {...props}>{dayFromUnix(props.payload.value)+' '+ampmFromUnix(props.payload.value)}</Text>
-    );
+const formatXAxis = (time) => { //TODO
+    if(hourFromUnix(time)==='8 AM'){
+        return dayFromUnix(time);
+    }
+    return '';
 };
 
 const CustomTooltip = props => {
@@ -45,11 +47,7 @@ const RenderChart = (props) => {
                     </defs>
                     <XAxis
                         dataKey="dt"
-                        tick={
-                            <CustomXAxisTick
-                                style={{fontFamily: 'arial'}}
-                            />
-                        }
+                        tickFormatter={formatXAxis}
                     />
                     <YAxis/>
                     <CartesianGrid strokeDasharray="3 3" />
