@@ -3,16 +3,13 @@ import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContain
 import {Typography} from "@material-ui/core";
 import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix, ampmFromUnix} from '../logic/timeUnixConverter';
 
-const formatXAxis = (time) => { //TODO
-    if(hourFromUnix(time)==='8 AM'){
-        return dayFromUnix(time);
-    }
-    return '';
+const formatXAxis = (time) => {
+        return (dayFromUnix(time)+' '+hourFromUnix(time));
 };
 
 const CustomTooltip = props => {
 
-    if (props.active && props.payload) {
+    if (props.active && props.payload) { //user hover
         const temp = props.payload[0].value;
         let emoji = '';
 

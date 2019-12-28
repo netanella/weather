@@ -38,27 +38,27 @@ const App = () => {
     }, [state.cityName]);
 
     return (
-        <Grid container spacing={5} direction="row" justify="center">
-            <Grid item xs={12}>
-                <Title/>
+            <Grid container spacing={5} direction="row" justify="center">
+                <Grid item xs={12}>
+                    <Title/>
+                </Grid>
+                <Grid item xs={12} sm={10}>
+                    <WeatherCard
+                        city={state.cityName}
+                        country={state.country}
+                        timeNow={state.timeNow}
+                        tempNow={state.tempNow}
+                        descriptionNow={state.descriptionNow}
+                        icon={state.icon}
+                        forecastData={state.forecastData}
+                        options={cities}
+                        errMess={state.errMess}
+                        onChange={(e) => {
+                            setState({cityName: e.target.value})
+                        }}
+                    />
+                </Grid>
             </Grid>
-            <Grid item xs={12} sm={10}>
-                <WeatherCard
-                    city={state.cityName}
-                    country={state.country}
-                    timeNow={state.timeNow}
-                    tempNow={state.tempNow}
-                    descriptionNow={state.descriptionNow}
-                    icon={state.icon}
-                    forecastData={state.forecastData}
-                    options={cities}
-                    errMess={state.errMess}
-                    onChange={(e) => {
-                        setState({cityName: e.target.value})
-                    }}
-                />
-            </Grid>
-        </Grid>
     );
 };
 
