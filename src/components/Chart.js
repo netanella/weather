@@ -32,8 +32,8 @@ const CustomTooltip = props => {
 const RenderChart = (props) => {
 
     return (
-        <div style={{ width: '100%', height: 400 }}>
-            <ResponsiveContainer>
+        <div style={{ height: 400 }}>
+            <ResponsiveContainer >
                 <AreaChart
                     data={props.forecastData}
                 >
@@ -47,14 +47,11 @@ const RenderChart = (props) => {
                         dataKey="dt"
                         tick={
                             <CustomXAxisTick
-                                style={{
-                                    fontFamily: "Arial",
-                                    fontWeight: 500
-                                }}
+                                style={{fontFamily: 'arial'}}
                             />
                         }
                     />
-                    <YAxis />
+                    <YAxis/>
                     <CartesianGrid strokeDasharray="3 3" />
                     <Tooltip
                         content={

@@ -1,14 +1,14 @@
 import React from "react";
 import ForecastChart from './Chart'
-import {Card, makeStyles} from "@material-ui/core";
+import {Card, makeStyles, LinearProgress} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CitySelect from "./CitySelect";
 import Grid from "@material-ui/core/Grid";
 import {styled} from '@material-ui/core/styles';
 import {dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
-import LinearProgress from "@material-ui/core/LinearProgress";
 import WbSunnyTwoToneIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Hidden from "@material-ui/core/Hidden";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
     title: {
@@ -28,17 +28,15 @@ const DisplayWeather = props => {
         return (
             <>
                 <Grid container item xs={12} sm={6} >
-
                     <Grid item xs={6} sm>
                         <Typography className={classes.title}>
-                            {props.city}<Hidden smDown> , {props.country}</Hidden>
+                            {props.city}<Hidden smDown>, {props.country}</Hidden>
                         </Typography>
                         <Typography className={classes.subtitle} color="textSecondary">
                             {dayFromUnix(props.timeNow)}, {hourFromUnix(props.timeNow)} <br/>
                             <strong>{props.descriptionNow}</strong>
                         </Typography>
                     </Grid>
-
                     <Grid item><Degrees>{Math.round(props.tempNow)}<sup>&#8451;</sup></Degrees></Grid>
                     <Hidden smDown>
                         <Grid item><img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="icon" width="150px"/></Grid>
@@ -52,7 +50,7 @@ const DisplayWeather = props => {
             </>
         )
     }
-    return (<LinearProgress color="primary" size={24} style={{margin: '10rem'}}/>);
+    return (<CircularProgress />);
 };
 
 const WeatherCard = props => {
