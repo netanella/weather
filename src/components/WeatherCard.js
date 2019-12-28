@@ -1,12 +1,11 @@
 import React from "react";
 import ForecastChart from './Chart'
-import {Card, makeStyles, LinearProgress} from "@material-ui/core";
+import {Card, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CitySelect from "./CitySelect";
 import Grid from "@material-ui/core/Grid";
 import {styled} from '@material-ui/core/styles';
 import {dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
-import WbSunnyTwoToneIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Hidden from "@material-ui/core/Hidden";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
