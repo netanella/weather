@@ -1,6 +1,9 @@
 import {API_KEY} from "./common";
 
 const getWeather = async (cityName) => {
+
+    console.log(API_KEY);
+
     try {
         const weather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&mode=json&units=metric&appid=${API_KEY}`);
         const weatherData = await weather.json(); //stringify
