@@ -7,7 +7,7 @@ const formatXAxis = time => (dayFromUnix(time));
 
 const CustomTooltip = props => {
 
-    if (props.active && props.payload) { //tooltip active on user hover
+    if (props.active) { //tooltip is active on user hover
         const temp = props.payload[0].value;
         const description = props.payload[0].payload.description;
         let emoji = '';
@@ -52,7 +52,6 @@ const RenderChart = (props) => {
                     <Tooltip
                         content={
                             <CustomTooltip
-                                description={props.forecastData.description}
                                 style={{
                                     background: 'rgba(255,255,255,0.5)',
                                     padding: '10px',
