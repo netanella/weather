@@ -7,8 +7,9 @@ const formatXAxis = time => (dayFromUnix(time));
 
 const CustomTooltip = props => {
 
-    if (props.active && props.payload) { //on user hover
+    if (props.active && props.payload) { //tooltip active on user hover
         const temp = props.payload[0].value;
+        const description = props.payload[0].payload.description;
         let emoji = '';
 
         if (temp < 15) emoji = <span role="img" aria-label="Freezing">🥶</span>;
@@ -19,6 +20,7 @@ const CustomTooltip = props => {
             <div {...props}>
                 <Typography variant="h6" className="intro"><strong>{temp}<sup>o</sup></strong></Typography>
                 <Typography className="label">{dayShortFromUnix(props.label)}, {dateFromUnix(props.label)}, {hourFromUnix(props.label)} </Typography>
+                <Typography>{description}</Typography>
                 <h1>{emoji}</h1>
             </div>
         );
@@ -27,7 +29,6 @@ const CustomTooltip = props => {
 };
 
 const RenderChart = (props) => {
-
     return (
         <div style={{ height: 400 }}>
             <ResponsiveContainer >
@@ -51,6 +52,7 @@ const RenderChart = (props) => {
                     <Tooltip
                         content={
                             <CustomTooltip
+                                description={props.forecastData.description}
                                 style={{
                                     background: 'rgba(255,255,255,0.5)',
                                     padding: '10px',
