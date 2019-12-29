@@ -7,7 +7,6 @@ import {makeStyles} from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles(theme => ({
-
     menuButton: {
         marginRight: theme.spacing(2),
     },

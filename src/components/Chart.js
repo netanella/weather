@@ -1,15 +1,13 @@
 import React from 'react';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
 import {Typography} from "@material-ui/core";
-import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix, ampmFromUnix} from '../logic/timeUnixConverter';
+import {dayShortFromUnix, dateFromUnix, dayFromUnix, hourFromUnix} from '../logic/timeUnixConverter';
 
-const formatXAxis = (time) => {
-        return (dayFromUnix(time)+' '+hourFromUnix(time));
-};
+const formatXAxis = time => (dayFromUnix(time));
 
 const CustomTooltip = props => {
 
-    if (props.active && props.payload) { //user hover
+    if (props.active && props.payload) { //on user hover
         const temp = props.payload[0].value;
         let emoji = '';
 
@@ -44,7 +42,9 @@ const RenderChart = (props) => {
                     </defs>
                     <XAxis
                         dataKey="dt"
+                        interval={7}
                         tickFormatter={formatXAxis}
+                        style={{fontFamily:'arial'}}
                     />
                     <YAxis/>
                     <CartesianGrid strokeDasharray="3 3" />
