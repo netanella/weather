@@ -26,7 +26,7 @@ const DisplayWeather = props => {
     if(props.tempNow && props.country && props.descriptionNow){ //loading complete
         return (
             <>
-                <Grid container item xs={12} sm={6} >
+                <Grid container item xs={12} sm={7} >
                     <Grid item xs={6} sm>
                         <Typography className={classes.title}>
                             {props.city}<Hidden smDown>, {props.country}</Hidden>
@@ -38,7 +38,7 @@ const DisplayWeather = props => {
                     </Grid>
                     <Grid item><Degrees>{Math.round(props.tempNow)}<sup>&#8451;</sup></Degrees></Grid>
                     <Hidden smDown>
-                        <Grid item><img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="icon" width="150px"/></Grid>
+                        <Grid item><img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="icon" width="150px"/></Grid>
                     </Hidden>
                 </Grid>
                 <Grid container>
