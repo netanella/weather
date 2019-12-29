@@ -41,12 +41,10 @@ const DisplayWeather = props => {
                         <Grid item><img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="icon" width="150px"/></Grid>
                     </Hidden>
                 </Grid>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <ForecastChart
-                            forecastData={props.forecastData}
-                        />
-                    </Grid>
+                <Grid item xs={12}>
+                    <ForecastChart
+                        forecastData={props.forecastData}
+                    />
                 </Grid>
             </>
         )
